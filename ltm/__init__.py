@@ -35,10 +35,10 @@ class Node(dict):
 
         # first init the node with yaml defaults
         defaults = load_defaults(objtype='Node')
-        self.__dict__.update(defaults)
+        self.update(defaults)
 
         # populate the Node params with things we passed in on the object creation
-        self.__dict__.update(kwargs)
+        self.update(kwargs)
 
 
 class Pool(object):
@@ -48,10 +48,10 @@ class Pool(object):
 
         # first init the pool with defaults
         defaults = load_defaults(objtype='Pool')
-        self.__dict__.update(defaults)
+        self.update(defaults)
 
         # populate the pool params with things we passed in
-        self.__dict__.update(kwargs)
+        self.update(kwargs)
 
 
 class VirtualServer(object):
@@ -61,8 +61,8 @@ class VirtualServer(object):
 
         # first init the VIP with defaults
         defaults = load_defaults(objtype='VirtualServer')
-        self.__dict__.update(defaults)
+        self.update(defaults)
 
         # populate the VIP params with things we passed in
-        self.__dict__.update(kwargs)
+        self.update(kwargs)
 
