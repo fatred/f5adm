@@ -41,7 +41,7 @@ class Node(dict):
         self.update(kwargs)
 
 
-class Pool(object):
+class Pool(dict):
     def __init__(self, **kwargs):
         # super the dict stuff in
         super(Pool, self).__init__(**kwargs)
@@ -54,7 +54,7 @@ class Pool(object):
         self.update(kwargs)
 
 
-class VirtualServer(object):
+class VirtualServer(dict):
     def __init__(self, **kwargs):
         # super the dict stuff in
         super(VirtualServer, self).__init__(**kwargs)
