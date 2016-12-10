@@ -19,7 +19,7 @@ with open(os.path.join(__location__, "ltm.yaml"), 'r') as stream:
 def load_defaults(**kwargs):
     if kwargs['objtype'] == 'Node':
         defaults = template['Defaults']['Nodes']
-    elif kwargs['objtype'] == 'Pool':
+    elif    kwargs['objtype'] == 'Pool':
         defaults = template['Defaults']['Pools']
     elif kwargs['objtype'] == 'VirtualServer':
         defaults = template['Defaults']['VirtualServer']
@@ -28,62 +28,59 @@ def load_defaults(**kwargs):
     return defaults
 
 
-class Node(dict):
+class Node:
     def __init__(self, **kwargs):
-        # super the dict stuff in
-        super(Node, self).__init__(**kwargs)
+        self.settings = {}
 
         # first init the node with yaml defaults
-        defaults = load_defaults(objtype='Node')
-        self.update(**defaults)
+        self.defaults = load_defaults(objtype='Node')
+        self.settings.update(self.defaults)
 
         # populate the Node params with things we passed in on the object creation
-        self.update(**kwargs)
+        if kwargs is not None: self.settings.update(kwargs)
 
-    def update_defaults(self):
-        defaults = load_defaults(objtype='Node')
-        self.update(**defaults)
+    def refresh_defaults(self):
+        self.defaults = load_defaults(objtype='Node')
+        self.settings.update(self.defaults)
 
-    def update(self, **kwargs):
-        self.update(**kwargs)
+    def refresh(self, **kwargs):
+        if kwargs is not None: self.settings.update(kwargs)
 
 
-class Pool(dict):
+class Pool:
     def __init__(self, **kwargs):
-        # super the dict stuff in
-        super(Pool, self).__init__(**kwargs)
+        self.settings = {}
 
         # first init the pool with defaults
-        defaults = load_defaults(objtype='Pool')
-        self.update(**defaults)
+        self.defaults = load_defaults(objtype='Pool')
+        self.settings.update(self.defaults)
 
         # populate the pool params with things we passed in
-        self.update(**kwargs)
+        if kwargs is not None: self.settings.update(kwargs)
 
-    def update_defaults(self):
-        defaults = load_defaults(objtype='Pool')
-        self.update(**defaults)
+    def refresh_defaults(self):
+        self.defaults = load_defaults(objtype='Pool')
+        self.settings.update(self.defaults)
 
-    def update(self, **kwargs):
-        self.update(**kwargs)
+    def refresh(self, **kwargs):
+        if kwargs is not None: self.settings.update(kwargs)
 
 
-class VirtualServer(dict):
+class VirtualServer:
     def __init__(self, **kwargs):
-        # super the dict stuff in
-        super(VirtualServer, self).__init__(**kwargs)
+        self.settings = {}
 
         # first init the VIP with defaults
-        defaults = load_defaults(objtype='VirtualServer')
-        self.update(**defaults)
+        self.defaults = load_defaults(objtype='VirtualServer')
+        self.settings.update(self.defaults)
 
         # populate the VIP params with things we passed in
-        self.update(**kwargs)
+        if kwargs is not None: self.settings.update(kwargs)
 
-    def update_defaults(self):
-        defaults = load_defaults(objtype='VirtualServer')
-        self.update(**defaults)
+    def refresh_defaults(self):
+        self.defaults = load_defaults(objtype='VirtualServer')
+        self.settings.update(self.defaults)
 
-    def update(self, **kwargs):
-        self.update(**kwargs)
+    def refresh(self, **kwargs):
+        if kwargs is not None: self.settings.update(kwargs)
 
