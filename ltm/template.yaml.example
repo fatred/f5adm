@@ -25,7 +25,7 @@ Defaults:
   Monitor: http
   MinActiveMembers: Disabled
 
- Members:
+ Nodes:
   Port: 80
   PriorityGroup: 0
 
@@ -43,8 +43,8 @@ RequiredFields:
   - Name
   - Monitor
   - MinActiveMembers
-  - Members
- Members:
+  - Nodes
+ Nodes:
   - Name
   - Address
   - Port

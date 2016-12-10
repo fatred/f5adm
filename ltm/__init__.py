@@ -15,7 +15,7 @@ with open("ltm.conf", 'r') as stream:
 
 def load_defaults(**kwargs):
     if kwargs['objtype'] == 'Node':
-        pass
+        defaults = template['Defaults']['Nodes']
     elif kwargs['objtype'] == 'Pool':
         pass
     elif kwargs['objtype'] == 'VirtualServer':
