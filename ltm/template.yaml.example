@@ -1,0 +1,81 @@
+Defaults:
+ VirtualServers:
+  all:
+   IPProtocol: tcp
+   ProtocolProfile: tcp
+   SourceAddressTranslation:
+    type: none
+   TranslateAddress: enabled
+   TranslatePort: enabled
+
+  443:
+   HTTPProfile: http
+   Rules:
+   SSLProfile: default
+   HTTPS_Redirect: False
+
+  80:
+   HTTPProfile: http
+   Rules:
+   SSLProfile: False
+   HTTPS_Redirect: True
+
+ Pools:
+  LoadBalancingMode: round-robin
+  Monitor: http
+  MinActiveMembers: Disabled
+
+ Members:
+  Port: 80
+  PriorityGroup: 0
+
+RequiredFields:
+ VirtualServers:
+  - Name
+  - Destination
+  - Port
+  - HTTPProfile
+  - Rules
+  - SSLProfile
+  - HTTPS_Redirect
+  - Pool
+ Pools:
+  - Name
+  - Monitor
+  - MinActiveMembers
+  - Members
+ Members:
+  - Name
+  - Address
+  - Port
+  - PriorityGroup
+
+NameMangleRules:
+ VirtualServers:
+  Name:
+   Prefix: vip_
+   Suffix:
+  Destination:
+   Prefix: '/Common/'
+   Suffix:
+  Rules:
+   Prefix: '/Common/'
+   Suffix:
+ Pool:
+  Name:
+   Prefix: pool_
+   Suffix:
+
+ProfileTemplates:
+ HTTPProfile:
+  Kind: tm:ltm:virtual:profiles:profilestate
+  Partition: Common
+  Context: all
+ ProtocolProfile:
+  Kind: tm:ltm:virtual:profiles:profilestate
+  Partition: Common
+  Context: all
+ SSLProfile:
+  Kind: tm:ltm:virtual:profiles:profilestate
+  Partition: Common
+  Context: clientside
