@@ -31,9 +31,10 @@ def load_defaults(**kwargs):
 class Node:
     def __init__(self, **kwargs):
         self.settings = {}
+        self.defaults = {}
 
         # first init the node with yaml defaults
-        self.defaults = load_defaults(objtype='Node')
+        self.defaults.update(load_defaults(objtype='Node'))
         self.settings.update(self.defaults)
 
         # populate the Node params with things we passed in on the object creation
@@ -50,6 +51,7 @@ class Node:
 class Pool:
     def __init__(self, **kwargs):
         self.settings = {}
+        self.defaults = {}
 
         # first init the pool with defaults
         self.defaults = load_defaults(objtype='Pool')
@@ -59,7 +61,7 @@ class Pool:
         if kwargs is not None: self.settings.update(kwargs)
 
     def refresh_defaults(self):
-        self.defaults = load_defaults(objtype='Pool')
+        self.defaults.update(load_defaults(objtype='Pool'))
         self.settings.update(self.defaults)
 
     def refresh(self, **kwargs):
@@ -69,16 +71,17 @@ class Pool:
 class VirtualServer:
     def __init__(self, **kwargs):
         self.settings = {}
+        self.defaults = {}
 
         # first init the VIP with defaults
-        self.defaults = load_defaults(objtype='VirtualServer')
+        self.defaults.update(load_defaults(objtype='VirtualServer'))
         self.settings.update(self.defaults)
 
         # populate the VIP params with things we passed in
         if kwargs is not None: self.settings.update(kwargs)
 
     def refresh_defaults(self):
-        self.defaults = load_defaults(objtype='VirtualServer')
+        self.defaults.update(load_defaults(objtype='VirtualServer'))
         self.settings.update(self.defaults)
 
     def refresh(self, **kwargs):
