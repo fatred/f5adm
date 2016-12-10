@@ -22,7 +22,7 @@ def load_defaults(**kwargs):
     elif    kwargs['objtype'] == 'Pool':
         defaults = template['Defaults']['Pools']
     elif kwargs['objtype'] == 'VirtualServer':
-        defaults = template['Defaults']['VirtualServer']
+        defaults = template['Defaults']['VirtualServers']
     else:
         defaults = {}
     return defaults
@@ -67,6 +67,12 @@ class Pool:
     def refresh(self, **kwargs):
         if kwargs is not None: self.settings.update(kwargs)
 
+    def add_member(self, node):
+        if not self.settings.__contains__('Members'):
+            self.settings['Members'] = node.settings
+        else:
+            self.settings['Members'].update(node.settings)
+
 
 class VirtualServer:
     def __init__(self, **kwargs):
@@ -87,3 +93,5 @@ class VirtualServer:
     def refresh(self, **kwargs):
         if kwargs is not None: self.settings.update(kwargs)
 
+    def set_pool(self, pool):
+        self.settings['pool'] = pool.settings
