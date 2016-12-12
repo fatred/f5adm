@@ -19,7 +19,7 @@ with open(os.path.join(__location__, "ltm.yaml"), 'r') as stream:
 def load_defaults(**kwargs):
     if kwargs['objtype'] == 'Node':
         defaults = template['Defaults']['Nodes']
-    elif    kwargs['objtype'] == 'Pool':
+    elif kwargs['objtype'] == 'Pool':
         defaults = template['Defaults']['Pools']
     elif kwargs['objtype'] == 'VirtualServer':
         defaults = template['Defaults']['VirtualServers']
