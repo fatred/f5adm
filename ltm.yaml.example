@@ -1,6 +1,6 @@
-LTM1:
- IP: 10.1.1.1
- Username: admin
- Password: DontSaveThisAnywherePublic!
- Version: 11.6.0
+ltm1:
+ ip: 10.1.1.1
+ username: admin
+ password: DontSaveThisAnywherePublic!
+ version: 11.6.0
 

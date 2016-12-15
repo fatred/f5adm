@@ -1,81 +1,63 @@
-Defaults:
- VirtualServers:
+defaults:
+ virtualservers:
   all:
-   IPProtocol: tcp
-   ProtocolProfile: tcp
-   SourceAddressTranslation:
+   partition: Common
+   ipprotocol: tcp
+   protocolprofile: tcp
+   sourceaddresstranslation:
     type: none
-   TranslateAddress: enabled
-   TranslatePort: enabled
+   translateaddress: enabled
+   translateport: enabled
 
   443:
-   HTTPProfile: http
-   Rules:
-   SSLProfile: default
-   HTTPS_Redirect: False
+   httpprofile: http
+   rules:
+   sslprofile: default
+   https_redirect: False
 
   80:
-   HTTPProfile: http
-   Rules:
-   SSLProfile: False
-   HTTPS_Redirect: True
+   httpprofile: http
+   rules:
+   sslprofile: False
+   https_redirect: True
 
- Pools:
-  LoadBalancingMode: round-robin
-  Monitor: http
-  MinActiveMembers: Disabled
+ pools:
+  partition: Common
+  loadbalancingmode: round-robin
+  monitor: http
+  minactivemembers: Disabled
 
- Nodes:
-  Port: 80
-  PriorityGroup: 0
+ nodes:
+  partition: Common
+  port: 80
+  prioritygroup: 0
 
-RequiredFields:
- VirtualServers:
-  - Name
-  - Destination
-  - Port
-  - HTTPProfile
-  - Rules
-  - SSLProfile
-  - HTTPS_Redirect
-  - Pool
- Pools:
-  - Name
-  - Monitor
-  - MinActiveMembers
-  - Nodes
- Nodes:
-  - Name
-  - Address
-  - Port
-  - PriorityGroup
+namemanglerules:
+ virtualservers:
+  name:
+   prefix: vip_
+   suffix:
+  destination:
+   prefix: '/Common/'
+   suffix:
+  rules:
+   prefix: '/Common/'
+   suffix:
+ pools:
+  name:
+   prefix: pool_
+   suffix:
 
-NameMangleRules:
- VirtualServers:
-  Name:
-   Prefix: vip_
-   Suffix:
-  Destination:
-   Prefix: '/Common/'
-   Suffix:
-  Rules:
-   Prefix: '/Common/'
-   Suffix:
- Pools:
-  Name:
-   Prefix: pool_
-   Suffix:
-
-ProfileTemplates:
- HTTPProfile:
-  Kind: tm:ltm:virtual:profiles:profilestate
-  Partition: Common
-  Context: all
- ProtocolProfile:
-  Kind: tm:ltm:virtual:profiles:profilestate
-  Partition: Common
-  Context: all
- SSLProfile:
-  Kind: tm:ltm:virtual:profiles:profilestate
-  Partition: Common
-  Context: clientside
+profiletemplates:
+ httpprofile:
+  kind: tm:ltm:virtual:profiles:profilestate
+  partition: Common
+  context: all
+ protocolprofile:
+  kind: tm:ltm:virtual:profiles:profilestate
+  partition: Common
+  context: all
+ sslprofile:
+  kind: tm:ltm:virtual:profiles:profilestate
+  partition: Common
+  context: clientside
