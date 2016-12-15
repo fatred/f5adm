@@ -4,10 +4,12 @@ VIP:
  IP: 10.10.10.10
  SSL: wildcard.website.com
  HTTP_Redirect: True
- Members:
-  node1.website.com:
-   Endpoint: 10.0.0.1:80
-   PriorityGroup: 1
-  node2.website.com:
-   Endpoint: 10.0.0.2:80
-   PriorityGroup: 2
+ Pool:
+  Monitor: http
+  Members:
+   node1.website.com:
+    Endpoint: 10.0.0.1:80
+    PriorityGroup: 1
+   node2.website.com:
+    Endpoint: 10.0.0.2:80
+    PriorityGroup: 2
