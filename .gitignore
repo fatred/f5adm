@@ -1,2 +1,3 @@
-**.conf
-!ltm.conf.example
+**.yaml
+!ltm.yaml.example
+!template.yaml.example

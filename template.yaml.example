@@ -61,7 +61,7 @@ NameMangleRules:
   Rules:
    Prefix: '/Common/'
    Suffix:
- Pool:
+ Pools:
   Name:
    Prefix: pool_
    Suffix:
